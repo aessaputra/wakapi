@@ -1,0 +1,63 @@
+services:
+  wakapi:
+    container_name: wakapi-app
+    build: .
+    init: true
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      ENVIRONMENT: "production"
+      WAKAPI_DB_TYPE: "mysql"
+      WAKAPI_DB_NAME: "wakapi"
+      WAKAPI_DB_USER: "wakapi"
+      WAKAPI_DB_HOST: "wakapi-db"
+      WAKAPI_DB_PORT: "3306"
+      WAKAPI_ALLOW_SIGNUP: "false"
+      WAKAPI_MAIL_ENABLED: "true"
+      WAKAPI_MAIL_FROM: "no-reply@aes.my.id"
+      WAKAPI_MAIL_SMTP_HOST: "mail.aes.my.id"
+      WAKAPI_MAIL_SMTP_PORT: 587
+      WAKAPI_MAIL_SMTP_USER: "no-reply@aes.my.id"
+      WAKAPI_MAIL_SMTP_TLS: "true"
+      WAKAPI_DB_PASSWORD_FILE: /run/secrets/db_password
+      WAKAPI_PASSWORD_SALT_FILE: /run/secrets/password_salt
+      WAKAPI_MAIL_SMTP_PASS_FILE: /run/secrets/smtp_pass
+    secrets:
+      - db_password
+      - password_salt
+      - smtp_pass
+
+  db:
+    container_name: wakapi-db
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: "wakapi"
+      MYSQL_DATABASE: "wakapi"
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+    secrets:
+      - db_password
+      - db_root_password
+    volumes:
+      - wakapi-db-data:/var/lib/mysql
+      - /home/container/wakapi/backup:/backup
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+  password_salt:
+    file: ./secrets/password_salt.txt
+  smtp_pass:
+    file: ./secrets/smtp_pass.txt
+
+volumes:
+  wakapi-db-data:
+
+networks:
+  default:
+    external: true
+    name: nginx-pm
