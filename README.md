@@ -1,21 +1,6 @@
 <h1>Panduan Upgrade Wakapi (untuk Fork Pribadi)</h1>
 <p>Dokumen ini adalah panduan langkah demi langkah dan praktik terbaik untuk melakukan upgrade instance Wakapi yang di-hosting sendiri. Alur kerja ini didasarkan pada penggunaan fork pribadi dari repositori asli, koneksi Git via SSH, dan manajemen rahasia menggunakan Docker Secrets.</p>
 
-<h2>Prasyarat</h2>
-<p>Sebelum memulai, pastikan setup Anda sudah memenuhi kondisi berikut:</p>
-<ul>
-    <li><strong>Docker dan Docker Compose:</strong> Sudah terinstal dan berjalan di server.</li>
-    <li><strong>Fork Pribadi:</strong> Repositori lokal adalah hasil clone dari fork Anda sendiri, bukan dari repositori asli.</li>
-    <li><strong>Remote Git Terkonfigurasi:</strong>
-        <ul>
-            <li><code>origin</code> menunjuk ke fork Anda (<code>git@github.com:akun-anda/wakapi.git</code>).</li>
-            <li><code>upstream</code> menunjuk ke repositori asli Wakapi (<code>git@github.com:muety/wakapi.git</code>).</li>
-            <li>Koneksi menggunakan SSH, bukan HTTPS.</li>
-        </ul>
-    </li>
-    <li><strong>Manajemen Rahasia:</strong> Semua password, salt, dan token dikelola melalui Docker Secrets (file-file di dalam direktori <code>secrets/</code>) dan <code>compose.yml</code> sudah dikonfigurasi untuk membacanya. Direktori <code>secrets/</code> sudah ada di dalam <code>.gitignore</code>.</li>
-</ul>
-
 <h2>Langkah-langkah Upgrade</h2>
 <p>Ikuti proses ini secara berurutan untuk memastikan upgrade berjalan lancar dan aman.</p>
 
