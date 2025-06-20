@@ -1,4 +1,4 @@
-<h1>Panduan Upgrade Wakapi (untuk Fork Pribadi)</h1>
+<h1>Upgrade Wakapi</h1>
 <p>Dokumen ini adalah panduan langkah demi langkah dan praktik terbaik untuk melakukan upgrade instance Wakapi yang di-hosting sendiri. Alur kerja ini didasarkan pada penggunaan fork pribadi dari repositori asli, koneksi Git via SSH, dan manajemen rahasia menggunakan Docker Secrets.</p>
 
 <h2>Langkah-langkah Upgrade</h2>
@@ -6,11 +6,11 @@
 
 <h3>Langkah 1: Backup (Penting!)</h3>
 <p>Jangan pernah melewatkan langkah ini. Selalu buat cadangan data database Anda sebelum melakukan perubahan apa pun.</p>
-# Masuk ke direktori aplikasi
+<p>Masuk ke direktori aplikasi</p>
 <pre><code>
 cd ~/wakapi
 </code></pre>
-# Jalankan skrip backup yang sudah ada
+<p>Jalankan skrip backup yang sudah ada</p>
 <pre><code>
 ./backup_wakapi.sh
 </code></pre>
@@ -23,12 +23,12 @@ git fetch upstream
 
 <h3>Langkah 3: Gabungkan Pembaruan</h3>
 <p>Pastikan Anda berada di branch <code>master</code> lokal Anda, lalu gabungkan perubahan yang baru saja diunduh dari <code>upstream/master</code>.</p>
-# Pindah ke branch master jika belum
+<p>Pindah ke branch master jika belum</p>
 <pre><code>
 git checkout master
 </code></pre>
 
-# Gabungkan perubahan
+<p>Gabungkan perubahan</p>
 <pre><code>
 git merge upstream/master
 </code></pre>
