@@ -6,24 +6,30 @@
 
 <h3>Langkah 1: Backup (Penting!)</h3>
 <p>Jangan pernah melewatkan langkah ini. Selalu buat cadangan data database Anda sebelum melakukan perubahan apa pun.</p>
-<pre><code># Masuk ke direktori aplikasi
+# Masuk ke direktori aplikasi
+<pre><code>
 cd ~/wakapi
-
+</code></pre>
 # Jalankan skrip backup yang sudah ada
+<pre><code>
 ./backup_wakapi.sh
 </code></pre>
 
 <h3>Langkah 2: Ambil Pembaruan dari Repositori Asli (Upstream)</h3>
 <p>Perintah ini akan mengunduh semua commit dan branch terbaru dari developer Wakapi tanpa mengubah file lokal Anda.</p>
-<pre><code>git fetch upstream
+<pre><code>
+git fetch upstream
 </code></pre>
 
 <h3>Langkah 3: Gabungkan Pembaruan</h3>
 <p>Pastikan Anda berada di branch <code>master</code> lokal Anda, lalu gabungkan perubahan yang baru saja diunduh dari <code>upstream/master</code>.</p>
-<pre><code># Pindah ke branch master jika belum
+# Pindah ke branch master jika belum
+<pre><code>
 git checkout master
+</code></pre>
 
 # Gabungkan perubahan
+<pre><code>
 git merge upstream/master
 </code></pre>
 
